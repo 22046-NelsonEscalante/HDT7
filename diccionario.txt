@@ -1,0 +1,2 @@
+si,yes,oui
+casa,house,loger
