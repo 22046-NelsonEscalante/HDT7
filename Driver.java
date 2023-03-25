@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * @author 22046-NelsonEscalante
+ */
 public class Driver {
     public static void main(String[] args) {
         WordComparator comp = new WordComparator();
@@ -64,13 +67,19 @@ public class Driver {
         in.close();
     }
 
-    public static String traduce(ArrayList<String> gay, BinarySearchTree<String, String> homo) {
+    /**
+     * This method translates a word from a language to another. 
+     * @param untranslated The words to translate.
+     * @param tree The tree from which to get the translations.
+     * @return The translated words.
+     */
+    public static String traduce(ArrayList<String> untranslated, BinarySearchTree<String, String> tree) {
         String traduced = "";
         
-        for (String w : gay) {
+        for (String w : untranslated) {
             String[] word = w.split(" ");
             for (String v : word) {
-                String traduction = homo.search(v);
+                String traduction = tree.search(v);
                 if (traduction == null) {
                     traduced  = traduced + "*" + v + "* ";
                 } else {
