@@ -13,7 +13,7 @@ public class Reader {
 
             while (line != null) {
                 content.add(line);
-                reader.readLine();
+                line = reader.readLine();
             }
 
             reader.close();

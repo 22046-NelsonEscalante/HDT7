@@ -7,6 +7,7 @@ public class Driver {
         Reader myReader = new Reader();
         ArrayList<String> file = new ArrayList<>();
         ArrayList<String> toTraduce = new ArrayList<>();
+        String traducedWords = "";
         Scanner in = new Scanner(System.in);
 
         BinarySearchTree<String, String> engTree = new BinarySearchTree<>(comp, null);
@@ -32,22 +33,52 @@ public class Driver {
             System.exit(0);
         }
 
-        for (String w : toTraduce) {
-            String traduced = "";
+        boolean a = true;
+
+        while (a) {
+            System.out.println("Ingrese el idioma del archivo que quiere traducir.");
+            System.out.println("1. Inglés.");
+            System.out.println("2. Francés.");
+            System.out.println("Ingrese su selección.");
+            int option = Integer.parseInt(in.nextLine());
+
+            switch(option) {
+                case 1:
+                    traducedWords = traduce(toTraduce, engTree);
+                    a = false;
+                    break;
+                case 2:
+                    traducedWords = traduce(toTraduce, frnTree);
+                    a = false;
+                    break;
+                default:
+                    System.out.println("Ingrese un valor válido.");
+                    break;
+            }
+        }
+
+        System.out.println(traducedWords);
+
+        System.out.println("Proceso terminado");
+
+        in.close();
+    }
+
+    public static String traduce(ArrayList<String> gay, BinarySearchTree<String, String> homo) {
+        String traduced = "";
+        
+        for (String w : gay) {
             String[] word = w.split(" ");
             for (String v : word) {
-                String traduction = engTree.search(v);
+                String traduction = homo.search(v);
                 if (traduction == null) {
                     traduced  = traduced + "*" + v + "* ";
                 } else {
                     traduced = traduced + traduction + " ";
                 }
             }
-            System.out.println(traduced);
         }
 
-        System.out.println("Proceso terminado");
-
-        in.close();
+        return traduced;
     }
 }
